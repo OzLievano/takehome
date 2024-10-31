@@ -1,0 +1,58 @@
+Acryl Take-Home: Snowflake Metadata API 
+A big portion of our work here at Acryl involves building integrations with other data tools. Our hope is that this exercise gives you a quick taste of what that actually entails, without requiring you to dive into DataHub. 
+The Challenge 
+Snowflake is a data warehouse optimized for analytics workloads. It is primarily queried with SQL. Some references and documentation on Snowflake: 
+Object hierarchy is Snowflake: A Snowflake account has multiple databases, each database can have many schemas, each schema contains tables, and each table is comprised of a number of columns. You can refer to objects using their qualified path (e.g. my_database.my_schema.my_table ) in most places. 
+Connecting to Snowflake: https://docs.snowflake.com/en/user guide/connecting.html 
+Snowflake Python connector: https://docs.snowflake.com/en/user guide/python-connector.html 
+Snowflake query syntax reference: https://docs.snowflake.com/en/sql reference/constructs.html 
+Snowflake databases and schemas: https://docs.snowflake.com/en/sql reference/ddl-database.html 
+Snowflake data definition commands: https://docs.snowflake.com/en/sql reference/sql-ddl-summary.html 
+We want to build a simple API that lets us fetch basic information about the schemas and tables we have stored in our Snowflake instance. Specifically, we want to build a web server that exposes RESTful endpoints with the following capabilities:
+Acryl Take-Home: Snowflake Metadata API 1 
+List all Schemas in a Database. 
+List all Tables in a Schema. 
+List each Column in a Table, including its name, type, and description.  
+Get a summary of a table, which returns summary statistics for each column. For numeric columns, it should include the non-null count, mean, min, and max of the column. For all other columns, it should include the non-null count and unique count. Try to use as few SQL queries as possible. 
+Technical notes: 
+You’re welcome to make use of whatever libraries you’d like. The below are  purely suggestions, and there are many other reasonable picks (e.g. SQLAlchemy, Django). 
+For sending queries to Snowflake, we’d recommend using Snowflake’s client library snowflake-connector-python . 
+For API framework, we’d recommend FastAPI or Flask. 
+You should define the routes, inputs, and outputs of the API as you see fit. 
+We expect that this API may be called a couple times a second, while the underlying Snowflake information (e.g. list of columns in a table) does not change very often. 
+For listing schemas, tables, and columns, you should be able to find the required information in the Snowflake documentation or elsewhere online. 
+For the table summaries, it may be the case that some tables you need to query are extremely large and cannot be loading into memory fully. 
+Note that it’s possible to query multiple statistics in a single query. For example: 
+SELECT 
+count(column_a), 
+count(distinct column_b), 
+min(column_c),
+Acryl Take-Home: Snowflake Metadata API 2 
+max(column_d) 
+FROM my_database.my_schema.my_table; 
+You may assume that the Snowflake credentials will be passed into your app through environment variable(s). 
+Snowflake credentials to use: 
+Web UI Login URL: https://xaa48144.snowflakecomputing.com/ Account identifier: XAA48144 
+User: ACRYL_TAKE_HOME 
+Password: ytw5vxw*FAW2hyn7nqh 
+Role: LONG_TAIL_READ_ONLY 
+Warehouse: COMPUTE_WH 
+Database: LONG_TAIL_COMPANIONS 
+Evaluation Criteria 
+1. Functionality 
+a. Does it work? 
+b. Does it do a reasonable job of handling edge cases and other errors? 2. Python Code quality 
+a. Effective code structure 
+b. Use of internal data models where appropriate 
+c. Follows best practices and standard Python conventions (e.g. type annotations, dataclasses) 
+3. Note that we don’t expect you to have extensive experience with SQL or Snowflake.
+Acryl Take-Home: Snowflake Metadata API 3 
+Guidelines 
+We expect this exercise should take ~4 hours. 
+If you have any questions, feel free to email harshal@acryl.io. 
+Submission 
+You can submit your code by sharing a GitHub repo with hsheth2 and jjoyce0510 or by emailing a zip file to harshal@acryl.io. 
+Please make sure to include a README with the following information: Basic instructions on how to set up and run your API server. 
+A quick reflection that answers these questions: 
+How long did you actually spend on this take-home? [Note that this is mainly to help us calibrate and make sure the take-home isn’t too onerous.] 
+What was one thing that you thought went well in this exercise? What is something that you’d want to improve if you had more time?

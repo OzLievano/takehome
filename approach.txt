@@ -1,0 +1,18 @@
+How to tackle: 
+
+- read assignment and rewrite into notes.txt into own words
+- review snowflake documentation - use sample code to quickly establish connection
+- establish connection and print out 'Successfully connected' 
+- once establish connection - start with 'list' all schemas
+   - keep all functions defined in single module then we will 
+    break into multiple files. 
+- We will need a routes file , queries file , connection file and we can 
+add a config file to call our env files easily.
+- Before modularizing files. verify that each query is returning data and returning 
+expected data.
+- manually pass in schema name, table names into methods and see if data is returned
+- once verifying data - google and chatgpt Flask. set up server.
+- Move queries inside of 'main' module and create a queries module.
+- Create routes file using Flask documentation - define routes and call methods 
+that were written within queries.py
+- verify that endpoints are returning data after running 'flask run' from CLI 

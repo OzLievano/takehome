@@ -1,0 +1,91 @@
+submission: 
+You can submit your code by sharing a GitHub repo 
+with hsheth2 and jjoyce0510 
+or by emailing a zip file to harshal@acryl.io. 
+
+README File 
+  basic instructions on how to set up and run your api server
+
+  anwer these questions: 
+
+    how long did you actually spend on this take-home? 
+
+    what was one thing you thought went well in this exercise 
+
+    what is something that you'd want to improve if you had more time
+
+Eval Criteria
+
+1. does it work 
+  b . does it handle edge cases and other errors
+
+2. Python Code Quality 
+    effective code structure  
+    use of internal data models where appropriate '
+    follow best practices and standard conventions 
+
+3. no SQL or snowflake xp needed 
+
+
+Snowflake credentials to use: 
+Web UI Login URL: https://xaa48144.snowflakecomputing.com/ Account identifier: XAA48144 
+User: ACRYL_TAKE_HOME 
+Password: ytw5vxw*FAW2hyn7nqh 
+Role: LONG_TAIL_READ_ONLY 
+Warehouse: COMPUTE_WH 
+Database: LONG_TAIL_COMPANIONS 
+
+
+sending queries to snowflake ... use Snowflake's client library 
+ snowflake-connector-python 
+
+use Flask for API framework
+
+  - define routes, inputs , and outputs of APIs as you see fit
+  - expect taht this API may be called a couple of times a second
+     
+  - for listing schemas, tables , and columns , 
+      require info in snowflake documentation 
+
+  - for table summaries, it may be the case that some tables you need to query 
+     are extremely large and cannot be loading in memory fully
+
+
+  Tasks
+
+
+  build a simple API that fetches basic information about schemas and tables in a 
+  snowflake isntance 
+
+  specifically buildinga  web server that exposes restful endpoints with the following capabilities
+
+  
+
+  1. List all Schemas in a Database 
+  2. List all Tables in a Schema 
+  3. List each column in a table, include its name, type and description
+  4. get a summary of a tabl e, which returns summary statistics for each column 
+      a. numeric columns, should include the non-null count, mean, min and max of column;
+
+      b. all other columns include non-null count and unique count.
+          note: use as few SQL queries as possible
+
+
+
+How to tackle: 
+
+- first view snowflake documentation 
+- establish connection and print out 'Successfully connected' 
+- once establish connection - start with 'list' all schemas
+   - keep all functions defined in single module then we will 
+    break into multiple files. 
+- We will need a routes file , queries file , connection file and we can 
+add a config file to call our env files easily.
+- Before modularizing files. verify that each query is returning data and returning 
+expected data.
+- manually pass in schema name, table names into methods and see if data is returned
+- once verifying data - google and chatgpt Flask. set up server.
+- Move queries inside of 'main' module and create a queries module.
+- Create routes file using Flask documentation - define routes and call methods 
+that were written within queries.py
+- verify that endpoints are returning data after running 'flask run' from CLI 
