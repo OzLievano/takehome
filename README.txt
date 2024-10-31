@@ -1,9 +1,9 @@
 # AcrylData Snowflake Metadata API Take Home
 
 This is a Flask application connecting to Snowflake and retrieving metadata
-  - Listing Schemas
-  - Listing Tables for a Schema
-  - List Column details for a Table
+- Listing Schemas
+- Listing Tables for a Schema
+- List Column details for a Table
 
 ## Table Of Contents 
 - [Project Overview](#project-overview)
@@ -14,36 +14,25 @@ This is a Flask application connecting to Snowflake and retrieving metadata
 - [API Endpoints](#api-endpoints)
   - [GET /](#get-)
   - [GET /schemas](#get-schemas)
-  - [GET /tables](#get-tables)
-  - [GET /columns](#get-columns)
-
+  - [GET /schemas/{schema_name}/tables](#get-schemasschema_nametables)
+  - [GET /schemas/{schema_name}/tables/{table_name}](#get-schemasschema_nametable_name)
+  - [GET /schemas/{schema_name}/tables/{table_name}/summary](#get-schemasschema_nametable_namesummary)
 
 ## Project Overview
-This FLASK development server enables you to interact with a Snowflake Database using 
+This Flask development server enables you to interact with a Snowflake Database using 
 REST APIs. It connects to a Snowflake database and exposes endpoints for retrieving 
 schemas, tables, and columns metadata.
 
-/app/__init__.py
-- This module creates a modular Flask application with 
-registered routes 
-/app/config.py 
-- This module defines a class Config that will retrieve our environment files. In this 
-case it is our snowflake credentials to use the APIs.
-/app/connection.py
-- This module uses the snowflake.connector library to establish a connection 
-to snowflake using our credentials.
-/app/queries.py
-- This module uses the cursor object , which allows us to execute SQL statements so that
-we can fetch results.
-/app/routes.py
-- This module is where we have defined our routes for the FLASK application and created our
-endpoints.
+- **/app/__init__.py**: This module creates a modular Flask application with registered routes.
+- **/app/config.py**: This module defines a class `Config` that retrieves our environment files. In this case, it is our Snowflake credentials to use the APIs.
+- **/app/connection.py**: This module uses the `snowflake.connector` library to establish a connection to Snowflake using our credentials.
+- **/app/queries.py**: This module uses the cursor object, which allows us to execute SQL statements and fetch results.
+- **/app/routes.py**: This module is where we have defined our routes for the Flask application and created our endpoints.
 
 ## Getting Started
 
-- **Python** - ensure you have python 3.6 or higher installed.
-- **Snowflake Account** - ensure you have the correct snowflake account with necessary 
-permissions to set up your environment.
+- **Python**: Ensure you have Python 3.6 or higher installed.
+- **Snowflake Account**: Ensure you have the correct Snowflake account with necessary permissions to set up your environment.
 
 ## Environment Variables
 - `SNOWFLAKE_USER`: Snowflake username
@@ -52,18 +41,15 @@ permissions to set up your environment.
 - `SNOWFLAKE_DATABASE`: Default database name
 - `SNOWFLAKE_WAREHOUSE`: Default warehouse
 
-
-You can set these environment variables by creating a .env file at the root of your project
-ensure that you add .env file to your .gitignore file.
+You can set these environment variables by creating a `.env` file at the root of your project. Ensure that you add the `.env` file to your `.gitignore` file.
 
 ## Installation
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/snowflake-metadata-api.git
-   cd snowflake-metadata-api
-2. **Install dependencies** 
-  ```pip install requirements.txt```
+   git clone https://github.com/OzLievano/takehome.git
+   cd acrylData
+
 
 ## Running the Application
 
